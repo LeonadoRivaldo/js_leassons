@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrow Function => in ES6</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./bower_components/materialize/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/materialize/dist/js/materialize.min.js"></script>
+  <style type="text/css">
+    input{
+      text-align: center;
+    }
+  </style>
+  </head>
+  <body>
+  <div class="container">
+      <div class="row">
+          <div class="col s6">
+            <div id="fields" class="col s6" style="text-align:center;">
+              <div class="col s2"><input type="text" name="val1" /></div>
+            </div>
+            <div class="col s12">
+            <a class="add waves-effect waves-light btn-large">add</a>
+            <a class="sum waves-effect waves-light btn-large">sum</a>
+            <a class="minus waves-effect waves-light btn-large">minus</a>
+            </div>
+          </div>
+          <div class="col s6">
+            <h4 id="greetings"></h4>
+          </div>
+        </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+const mult = 2;
+var fields = 1;
+$(document).ready(function(){
+    $('.add').on('click', function(){
+      fields++;
+      $('#fields').append( '<div class="col s2"><input type="text" name="val'+fields+'" /></div>');
+    });
+    $('.sum').on('click',function(){
+        var total = 0;
+        var html = "";
+       $('input').each(function(key, el){
+          let elem = $(this); 
+          total += parseInt(elem.val());
+          html += elem.val();
+          if( key < ($('input').length - 1) ){
+            html += " + ";
+          }
+       });
+        html += " = " + total;
+        total = total*mult;
+        html += " * 2 = " + total;
+        $('#greetings').html( html );
+    });
+
+    $('.minus').on('click',function(){
+        var total = 0;
+        var html = "";
+       $('input').each(function(key, el){
+          let elem = $(this); 
+          total = total - parseInt(elem.val());
+          html += elem.val();
+          if( key < ($('input').length - 1) ){
+            html += " - ";
+          }
+       });
+        html += " = " + total;
+        total = total*mult;
+        html += " * 2 = " + total;
+        $('#greetings').html( html );
+    });
+
+
+});
+</script>
+
+
+</html>
