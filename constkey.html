@@ -19,7 +19,7 @@
       <div class="row">
           <div class="col s6">
             <div id="fields" class="col s6" style="text-align:center;">
-              <div class="col s2"><input type="text" name="val1" /></div>
+              <div class="col s3"><input type="text" name="val1" /></div>
             </div>
             <div class="col s12">
             <a class="add waves-effect waves-light btn-large">add</a>
@@ -40,7 +40,7 @@ var fields = 1;
 $(document).ready(function(){
     $('.add').on('click', function(){
       fields++;
-      $('#fields').append( '<div class="col s2"><input type="text" name="val'+fields+'" /></div>');
+      $('#fields').append( '<div class="col s3"><input type="text" name="val'+fields+'" /></div>');
     });
     $('.sum').on('click',function(){
         var total = 0;
