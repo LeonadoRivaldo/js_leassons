@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Arrow Function => in ES6</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="./bower_components/materialize/dist/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -13,38 +14,121 @@
   <body>
   <div class="container">
       <div class="row">
-          <div class="col 6">
-            <div class="col s6">
-              <h4>Person</h4>
-              <div class="col s6">
-                <label for='nome'>Nome</label>
-                <input id="name" type="text" name="name" />
-              </div>
-              <div class="col s6">
-                <label for='email'>Email</label>
-                <input id="email" type="text" name="email" />
-              </div>
-              <div class="col s6">
-                <label for='birthday'>Birthday</label>
-                <input id="birthday" type="text" name="birthday" />
-              </div>
-              <div class="col s6">
-                <label for='fone'>Fone</label>
-                <input id="fone" type="text" name="fone" />
-              </div>
+          <div class="col s8">
+            <!-- form -->
+            <div class="row">
+                <div class="col s12">
+                  <!-- info -->
+                  <div class="row">
+                    <div id="info" class="col s12">
+                    <h4>Person</h4>
+                    <hr>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input id="name" type="text" name="name" class="validate" />
+                          <label data-error="wrong" data-success="right" for='nome'>Nome</label>
+                        </div>
+                        <div class="input-field col s6">
+                          <label data-error="wrong" data-success="right" for='email'>Email</label>
+                          <input id="email" type="email" name="email" class="validate" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <label for='birthday'>Birthday</label>
+                          <input id="birthday" type="date" name="birthday" class="datepicker" />
+                        </div>
+                        <div class="input-field col s6">
+                          <label data-error="wrong" data-success="right" for='fone'>Fone</label>
+                          <input id="fone" type="text" name="fone" class="validate"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- address -->
+                  <div class="row">
+                    <div id="address" class="col s12">
+                      <h4>Address</h4>
+                      <hr>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="rua" type="text" name="rua" class="validate" />
+                            <label data-error="wrong" data-success="right" for='rua'>Rua</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <label data-error="wrong" data-success="right" for='cep'>cep</label>
+                            <input id="cep" type="text" name="cep" class="validate" />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <label data-error="wrong" data-success="right" for='numero'>Numero</label>
+                            <input id="numero" type="text" name="numero" class="validate" />
+                          </div>
+                          <div class="input-field col s6">
+                            <label data-error="wrong" data-success="right" for='complemento'>Complemento</label>
+                            <input id="complemento" type="text" name="complemento" class="validate"/>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- note -->
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label data-error="wrong" data-success="right" for='notes'>Notas</label>
+                      <textarea id="notes" class="materialize-textarea validate" data-length="255"></textarea>
+                    </div>
+                  </div>
+                </div>
             </div>
-            <div class="col s12">
-              <a class="send waves-effect waves-light btn-large">Save</a>
+            <!-- save -->
+            <div class="row">
+              <div class="col s12">
+                <a class="send waves-effect waves-light btn-large">Save</a>
+              </div>
             </div>
           </div>
-          <div class="col s6">
-            <h4 id="person"></h4>
+          <div class="col s4">
+            <p id="person" style="word-wrap:break-word;"></p>
           </div>
         </div>
   </div>
 </body>
 
 <script type="text/javascript">
+    var form ={},
+    person = {},
+    info = {},
+    address = {},
+    notes = "";
+
+$(document).ready(function(){
+      $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+  $('.send').on('click', function(){
+      $("#info input").each(function(key, elem){
+        info[ $(this).attr('name') ] = $(this).val();     
+      });
+      $("#address input").each(function(key, elem){
+        address[ $(this).attr('name') ] = $(this).val();     
+      });
+
+      if(  $("#notes").val().lenth > 255 ){
+        alert("Notas não podem ser mair que 255charteres");
+        return;
+      }
+      notes =  $("#notes").val();
+
+      person = {info,address};
+      form = { person, notes };
+      console.log(form);
+      $("#person").html(JSON.stringify(form));
+  });
+});
+
+
 </script>
 
 
