@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrow Function => in ES6</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./bower_components/materialize/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/materialize/dist/js/materialize.min.js"></script>
+
+  </head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col s3">
+          <div class="row">
+            <input type="text" name="nome">
+            <a class="send waves-effect waves-light btn-large">Button</a>
+          </div>  
+        </div>
+        <div class="col s9">
+          <div class="col s12" id="chips"></div>
+        </div>
+      </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+var starwars = [];
+    starwars[0] = "./sw_bg.jpg"; // img
+    starwars[1] = "Star Wars (Guerra nas Estrelas)"; // titulo
+    starwars[2] = "é o título de uma franquia de ópera espacial estadunidense criada pelo cineasta George Lucas. A franquia conta com uma série de sete filmes de fantasia científica e um spin-off. O primeiro filme da série foi lançado apenas com o título Star Wars[1] em 25 de maio de 1977, e se tornou um sucesso inesperado e fenômeno mundial de cultura popular."; //descrição
+    starwars[3] = "https://pt.wikipedia.org/wiki/Star_Wars"; //link 1
+    starwars[4] = "wikipedia - artigo pt-br"; // rotulo
+    starwars[5] = "https://en.wikipedia.org/wiki/Star_Wars"; //link 2
+    starwars[6] = "wikipedia - artigo en-us"; // rotulo
+
+function tag(strings, ...values){
+  console.log(strings);
+  values[0] = "./bg.jpg"; // img
+  values[1] = "Lorem Ipsum"; // titulo
+  values[2] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium, metus at pretium sollicitudin, urna urna venenatis tortor, at tristique felis erat vel eros. Curabitur volutpat lacinia libero, sit amet scelerisque ante feugiat a. Nunc orci dui, condimentum at ex vel, varius faucibus lectus. In eu aliquam risus."; //descrição
+  values[3] = "http://br.lipsum.com/feed/html"; //link 1
+  values[4] = "Lorem Ipsum"; // rotulo
+  values[5] = "http://br.lipsum.com/feed/html"; //link 2
+  values[6] = "Lorem Ipsum"; // rotulo
+
+  if( $('input').val().toLowerCase() === 'star wars' ){
+    values = starwars;
+  }
+
+
+  
+  console.log(values);
+  return `${strings[0]}${values[0]}${strings[1]}${values[1]}${strings[2]}${values[2]}${strings[3]}${values[3]}${strings[4]}${values[4]}${strings[5]}${values[5]}${strings[6]}${values[6]}${strings[7]}`
+};
+
+
+$(document).ready(function() {
+  $('.send').on('click', function(){
+    var html = tag`<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src="${""}"><span class="card-title">${""}</span></div><div class="card-content"><p>${""}</p></div><div class="card-action"><a target="_blank" href="${""}">${""}</a><a target="_blank" href="${""}">${""}</a></div></div></div></div>`;
+    $("#chips").html(html);
+  });
+})
+
+</script>
+</html>

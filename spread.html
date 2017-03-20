@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrow Function => in ES6</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./bower_components/materialize/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/materialize/dist/js/materialize.min.js"></script>
+
+  </head>
+  <body>
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+          <div class="row">
+            <div class="col s12" id="chips"></div>
+          </div>
+          <div class="row">
+            <input type="text" name="nome">
+            <a class="send waves-effect waves-light btn-large">Button</a>
+          </div>  
+        </div>
+        <div class="col s6"></div>
+      </div>
+</div>
+
+  </body>
+
+<script type="text/javascript">
+
+var chip = (name) => '<div class="chip">'+name+'</div>';
+
+
+$(document).ready(function() {
+  var arr = [];
+  $('.send').on('click', function(){
+     arr.push( chip($('input').val()) );
+     setTimeout(function(){
+      if( confirm("Push all itens to html") ){
+        $('#chips').append(...arr);
+      }
+     }, 2000);
+  });
+})
+
+</script>
+
+
+</html>
