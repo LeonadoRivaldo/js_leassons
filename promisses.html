@@ -33,6 +33,7 @@ $(document).ready(function() {
   $('.send').click(function(){
       var promise = new Promise((resolve, reject) => {
         var v = parseInt ( $('input').val() );
+        $("#chips").html(v);
         setTimeout(function(){
           console.log(v);
           if( v > 0 ){
@@ -40,35 +41,38 @@ $(document).ready(function() {
           }else{
             reject("Campo em branco");
           }
-        },  1000);
+        },  500);
       });
     promise.then(function(data){
-        console.log('test0');
+        console.log('test1', data);
         var v = data + data;
-        $("#chips").html(v);
-        return v;
-      })
-      .then(function(data){
-        console.log('test');
-        var v = data + data;
-        $("#chips").html(v);
-        return v;
-      })
-      .then(function(data){
-        console.log('test1');
-        var next = false;
-        var v = data + data;
-        $("#chips").html(v);
         setTimeout(function(){
-          next = true;  
-        },500);
-        console.log('test2');
+          $("#chips").html(v);
+        }, 1000);
         return v;
       })
       .then(function(data){
-                console.log('test3');
+        console.log('test2',data)
         var v = data + data;
-        $("#chips").html(v);
+        setTimeout(function(){
+          $("#chips").html(v);
+        }, 1500);
+        return v;
+      })
+      .then(function(data){
+        console.log('test3',data);
+        var v = data + data;
+        setTimeout(function(){
+          $("#chips").html(v);
+        }, 2000);
+        return v;
+      })
+      .then(function(data){
+        console.log('test4',data);
+        var v = data + data;
+        setTimeout(function(){
+          $("#chips").html(v);
+        }, 2500);
       })
       .catch(function(data){
         $("#chips").html(data);
