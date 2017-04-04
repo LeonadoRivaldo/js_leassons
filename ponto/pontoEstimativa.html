@@ -90,10 +90,23 @@ function addDate(date, interval, units) {
   var countdown;
   var timerFn;
   var delay = (8*60*60*1000) + (48*60*1000);
-  var timerD;
+  var timerD = {
+    minute: 48,
+    seconds: 60,
+    hours: 8,
+    getHours: function(){
+      return hours;
+    },
+    getMinutes:function(){
+      return minute;
+    },
+    getSeconds:function(){
+      return seconds;
+    }
+  };
   var endDateEst;
 
-  var register = (elem, date) => $(elem).html( `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` );
+var register = (elem, date) => $(elem).html( `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` );
 
 function startTimer(time) {
   timerD = time;
@@ -101,12 +114,21 @@ function startTimer(time) {
 }
 
 function timer() {
-  timerD = timerD - 1000;
+  if( timerD.seconds == 0 ){
+    timerD.seconds = 60;
+  }
+
+  if( timerD.minute == 0 ){
+    timerD.minute = 60
+  }
+
+
+
+
   if( timerD > 0 ){
     register("#countdown span", new Date(timerD));
   }
 }
-
 
 function stopTimer(){
   clearInvertal(timerFn);
