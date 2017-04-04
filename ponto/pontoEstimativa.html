@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrow Function => in ES6</title>
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../bower_components/materialize/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/materialize/dist/js/materialize.min.js"></script>
+
+  </head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col s6">
+	      <ul class="collection with-header">
+	        <li class="collection-item">
+	        	<div id="c">
+	        		chegada :
+	        		<span class='hour'></span>
+	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
+	        	</div>
+	        </li>
+	        <li class="collection-item">
+	        	<div id="sA">
+	        		saida almoço  :
+	        		<span class='hour'></span>
+	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
+	        	</div>
+	        </li>
+	        <li class="collection-item">
+	        	<div  id="cA">
+	        		chegada almoço :
+	        		<span class='est red-text accent-4'></span> 
+	          		<span class='hour'></span>
+	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
+	        	</div>
+	        </li>
+	        <li class="collection-item">
+	        	<div id="s">
+	        		saida :
+	        		<span class='est red-text accent-4'></span> 
+	          		<span class='hour'></span>
+	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
+	        	</div>
+	        </li>
+	      </ul>
+        </div>
+        <div class="col s6">
+          <div class="row">
+            <div class="col s12 m12">
+              <div class="card-panel teal">
+                <span class="white-text" id="total"><b>Total: </b></span><br>
+                <span class="white-text" id="countdown"><b>Faltam: </b><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+
+function addDate(date, interval, units) {
+  var ret = new Date(date); //don't change original date
+  var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
+  switch(interval.toLowerCase()) {
+    case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+    case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
+    case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+    case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
+    case 'day'    :  ret.setDate(ret.getDate() + units);  break;
+    case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
+    case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
+    case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
+    default       :  ret = undefined;  break;
+  }
+  return ret;
+}
+  
+  var startDate;
+  var launchStart;
+  var launchEnd;
+  var endDate;
+  var countdown;
+  var timerFn;
+  var delay = (8*60*60*1000) + (48*60*1000);
+  var timerD;
+  var endDateEst;
+
+  var register = (elem, date) => $(elem).html( `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` );
+
+function startTimer(time) {
+  timerD = time;
+  timerFn = setInterval(timer,1000);
+}
+
+function timer() {
+  timerD = timerD - 1000;
+  if( timerD > 0 ){
+    register("#countdown span", new Date(timerD));
+  }
+}
+
+
+function stopTimer(){
+  clearInvertal(timerFn);
+};
+
+
+$(document).ready(function() {
+  $('#c .send').on('click', function(){
+    startDate = new Date();
+    endDateEst = addDate(startDate, 'hour', 8);
+    endDateEst = addDate(endDateEst, 'minute',  48);
+    register('#c .hour',startDate);
+    register('#s .est', endDateEst);
+    $('#c .send').hide();
+    startTimer( endDateEst.getTime() );
+  });
+
+
+  $('#sA .send').on('click', function(){
+    $('#sA .send').hide();
+    launchStart = new Date();
+    register('#sA .hour',launchStart);
+    register('#cA .est', addDate(launchStart, 'hour', 1));
+    register('#s .est', addDate(endDateEst, 'hour', 1));
+    stopTimer();
+  });
+
+  $('#cA .send').on('click', function(){
+    $('#cA .send').hide();
+    $('#cA .est').hide();
+    launchEnd = new Date();
+    register('#cA .hour',launchStart);
+    startTimer( timerD );
+  });
+
+
+  $('#s .send').on('click', function(){
+    endDate = new Date()
+    $('#sA .send').hide();
+    register('#s .hour', endDate);
+    var html = `${endDate.getHours() - startDate.getHours()}:${endDate.getMinutes() - startDate.getMinutes()}:${endDate.getSeconds() - startDate.getSeconds()}`;
+    $('h4 span').html( html );
+    stopTimer();
+  });
+
+
+});
+
+</script>
+</html>
