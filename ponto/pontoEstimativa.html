@@ -65,6 +65,16 @@
 </body>
 
 <script type="text/javascript">
+Notification.requestPermission();
+
+function spawnNotification(theBody,theIcon,theTitle) {
+  var options = {
+      body: theBody,
+      icon: theIcon
+  }
+  var n = new Notification(theTitle,options);
+}
+
 
 function addDate(date, interval, units) {
   var ret = new Date(date); //don't change original date
@@ -89,45 +99,47 @@ function addDate(date, interval, units) {
   var endDate;
   var countdown;
   var timerFn;
-  var delay = (8*60*60*1000) + (48*60*1000);
   var timerD = {
     minute: 48,
     seconds: 60,
     hours: 8,
-    getHours: function(){
-      return hours;
-    },
-    getMinutes:function(){
-      return minute;
-    },
-    getSeconds:function(){
-      return seconds;
-    }
   };
   var endDateEst;
 
 var register = (elem, date) => $(elem).html( `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` );
 
 function startTimer(time) {
-  timerD = time;
   timerFn = setInterval(timer,1000);
 }
 
 function timer() {
+  var icone = "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/clock-icon.png";
+  var sendnotification = false;
   if( timerD.seconds == 0 ){
+  	timerD.minute--;
     timerD.seconds = 60;
+  }else{
+  	timerD.seconds--;
   }
 
   if( timerD.minute == 0 ){
     timerD.minute = 60
+    timerD.hours--;
+    sendnotification = true;
+  }else{
+  	sendnotification = false;
+  }
+
+  if( timerD.hours == 0 ){
+  	stoptimer();
+  	return;
   }
 
 
-
-
-  if( timerD > 0 ){
-    register("#countdown span", new Date(timerD));
-  }
+  var html = `${timerD.hours}:${timerD.minute}:${timerD.seconds}`;
+  var body = "Faltam " + html + " horas";
+  spawnNotification(body, icone, "Ding Dong!");
+  $("#countdown span").html(html);
 }
 
 function stopTimer(){
