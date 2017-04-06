@@ -65,16 +65,14 @@
 </body>
 
 <script type="text/javascript">
-Notification.requestPermission();
 
-function spawnNotification(theBody,theIcon,theTitle) {
-  var options = {
-      body: theBody,
-      icon: theIcon
-  }
-  var n = new Notification(theTitle,options);
-}
 
+var permission;
+Notification.requestPermission().then(function(result) {
+  permission = result;
+});
+
+console.log ( new Notification( "LOL", { body:"teste dessa poha" } ) ) ;
 
 function addDate(date, interval, units) {
   var ret = new Date(date); //don't change original date
@@ -138,7 +136,17 @@ function timer() {
 
   var html = `${timerD.hours}:${timerD.minute}:${timerD.seconds}`;
   var body = "Faltam " + html + " horas";
-  spawnNotification(body, icone, "Ding Dong!");
+  new Notification( "DING DONG!", { body: body } );
+  if( permission == 'granted' ){
+    new Notification( "DING DONG!", { body: body } );
+  }else{
+    Notification.requestPermission().then(function(result) {
+      if( permission == 'granted' ){
+        new Notification( "LOL", { body: "TESTE" } );
+      }
+    });
+  }
+
   $("#countdown span").html(html);
 }
 
