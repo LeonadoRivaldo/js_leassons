@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ponto">
   <head>
     <meta charset="utf-8">
     <title>Arrow Function => in ES6</title>
@@ -9,9 +9,12 @@
     <!-- Compiled and minified JavaScript -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="./controllers/app.js"></script>
+    <script src="./controllers/timer.js"></script>
 
   </head>
-<body>
+<body ng-controller="PontoController">
   <div class="container">
     <div class="row">
         <div class="col s6">
@@ -46,6 +49,10 @@
 	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
 	        	</div>
 	        </li>
+	       	<li class="collection-item">
+				<register-card ng-model="horaChegada" element-id="chegada" label="Chegada"></register-card>
+				{{horaChegada}}
+	        </li>
 	      </ul>
         </div>
         <div class="col s6">
@@ -58,36 +65,23 @@
             </div>
           </div>
         </div>
-
-
       </div>
   </div>
 </body>
 
 <script type="text/javascript">
-
-
-var permission;
-Notification.requestPermission().then(function(result) {
-  permission = result;
-});
-
-function addDate(date, interval, units) {
-  var ret = new Date(date); //don't change original date
-  var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
-  switch(interval.toLowerCase()) {
-    case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
-    case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
-    case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
-    case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
-    case 'day'    :  ret.setDate(ret.getDate() + units);  break;
-    case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
-    case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
-    case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
-    default       :  ret = undefined;  break;
+//Notification.requestPermission();
+/*
+function spawnNotification(theBody,theIcon,theTitle) {
+  var options = {
+      body: theBody,
+      icon: theIcon
   }
-  return ret;
+  var n = new Notification(theTitle,options);
 }
+
+
+
   
   var startDate;
   var launchStart;
@@ -95,11 +89,7 @@ function addDate(date, interval, units) {
   var endDate;
   var countdown;
   var timerFn;
-  var timerD = {
-    minute: 48,
-    seconds: 60,
-    hours: 8,
-  };
+
   var endDateEst;
 
 var register = (elem, date) => $(elem).html( `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` );
@@ -108,48 +98,10 @@ function startTimer(time) {
   timerFn = setInterval(timer,1000);
 }
 
-function timer() {
-  var icone = "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/clock-icon.png";
-  var sendnotification = false;
-  if( timerD.seconds == 0 ){
-  	timerD.minute--;
-    timerD.seconds = 60;
-  }else{
-  	timerD.seconds--;
-  }
 
-  if( timerD.minute == 0 ){
-    timerD.minute = 60
-    timerD.hours--;
-    sendnotification = true;
-  }else{
-  	sendnotification = false;
-  }
-
-  if( timerD.hours == 0 ){
-  	stoptimer();
-  	return;
-  }
-
-
-  var html = `${timerD.hours}:${timerD.minute}:${timerD.seconds}`;
-  var body = "Faltam " + html + " horas";
-  new Notification( "DING DONG!", { body: body } );
-  if( permission == 'granted' && sendnotification ){
-    new Notification( "DING DONG!", { body: body } );
-  }else{
-    Notification.requestPermission().then(function(result) {
-      if( permission == 'granted' && sendnotification ){
-        new Notification( "DING DONG!", { body: body } );
-      }
-    });
-  }
-
-  $("#countdown span").html(html);
-}
 
 function stopTimer(){
-  clearInvertal(timerFn);
+  clearInterval(timerFn);
 };
 
 
@@ -184,8 +136,8 @@ $(document).ready(function() {
 
 
   $('#s .send').on('click', function(){
-    endDate = new Date()
-    $('#sA .send').hide();
+    endDate = new Date();
+    $('#s .send').hide();
     register('#s .hour', endDate);
     var html = `${endDate.getHours() - startDate.getHours()}:${endDate.getMinutes() - startDate.getMinutes()}:${endDate.getSeconds() - startDate.getSeconds()}`;
     $('h4 span').html( html );
@@ -194,6 +146,6 @@ $(document).ready(function() {
 
 
 });
-
+*/
 </script>
 </html>
