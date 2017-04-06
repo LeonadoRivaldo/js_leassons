@@ -72,8 +72,6 @@ Notification.requestPermission().then(function(result) {
   permission = result;
 });
 
-console.log ( new Notification( "LOL", { body:"teste dessa poha" } ) ) ;
-
 function addDate(date, interval, units) {
   var ret = new Date(date); //don't change original date
   var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
@@ -137,12 +135,12 @@ function timer() {
   var html = `${timerD.hours}:${timerD.minute}:${timerD.seconds}`;
   var body = "Faltam " + html + " horas";
   new Notification( "DING DONG!", { body: body } );
-  if( permission == 'granted' ){
+  if( permission == 'granted' && sendnotification ){
     new Notification( "DING DONG!", { body: body } );
   }else{
     Notification.requestPermission().then(function(result) {
-      if( permission == 'granted' ){
-        new Notification( "LOL", { body: "TESTE" } );
+      if( permission == 'granted' && sendnotification ){
+        new Notification( "DING DONG!", { body: body } );
       }
     });
   }
