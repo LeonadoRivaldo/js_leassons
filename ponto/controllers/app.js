@@ -26,8 +26,8 @@ ponto.directive('registerCard', ['$log', function($log){
 		},
 		controller: ['$scope', function($scope) {
 			$scope.registrar = function(){
-				$scope.hour = new Date("HH:MM:SS");
-			}
+				$scope.hour = new Date();
+			} 
 		}]
 	}
 }]);
