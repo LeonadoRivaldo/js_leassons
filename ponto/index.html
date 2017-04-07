@@ -19,40 +19,18 @@
     <div class="row">
         <div class="col s6">
 	      <ul class="collection with-header">
-	        <li class="collection-item">
-	        	<div id="c">
-	        		chegada :
-	        		<span class='hour'></span>
-	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-	        	</div>
-	        </li>
-	        <li class="collection-item">
-	        	<div id="sA">
-	        		saida almoço  :
-	        		<span class='hour'></span>
-	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-	        	</div>
-	        </li>
-	        <li class="collection-item">
-	        	<div  id="cA">
-	        		chegada almoço :
-	        		<span class='est red-text accent-4'></span> 
-	          		<span class='hour'></span>
-	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-	        	</div>
-	        </li>
-	        <li class="collection-item">
-	        	<div id="s">
-	        		saida :
-	        		<span class='est red-text accent-4'></span> 
-	          		<span class='hour'></span>
-	        		<a href="#!" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-	        	</div>
-	        </li>
 	       	<li class="collection-item">
-				<register-card ng-model="horaChegada" element-id="chegada" label="Chegada"></register-card>
-				{{horaChegada}}
+            <register-card ng-model="horaChegada" element-id="chegada" label="Chegada"></register-card>
+          </li>
+          <li class="collection-item">
+            <register-card ng-model="saidaAlmoco" element-id="saidaAlmoco" label="Saida almoço"></register-card>
+          </li>
+          <li class="collection-item">
+				    <register-card ng-model="chegadaAlmoco" element-id="chegadaAlmoco" label="Chegada almoço"></register-card>
 	        </li>
+          <li class="collection-item">
+            <register-card ng-model="horaSaida" element-id="saida" label="Saida"></register-card>
+          </li>
 	      </ul>
         </div>
         <div class="col s6">
