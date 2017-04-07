@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ponto">
   <head>
     <meta charset="utf-8">
-    <title>Ponto</title>
+    <title>Arrow Function => in ES6</title>
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/materialize/dist/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/materialize/dist/js/materialize.min.js"></script>
-
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="./controllers/app.js"></script>
+    <script src="./controllers/timer.js"></script>
 
   </head>
 <body ng-controller="PontoController">
@@ -18,32 +20,16 @@
         <div class="col s6">
 	      <ul class="collection with-header">
 	       	<li class="collection-item">
-			<div id="chegada">
-			 	Chegada:
-			 	<span class='hour'></span>
-			 	<a href="#!" onClick="registrar(this)" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-			</div>
+            <register-card ng-model="horaChegada" element-id="chegada" label="Chegada"></register-card>
           </li>
           <li class="collection-item">
-			<div id="chegadaAlmoco">
-			 	Saida almoço:
-			 	<span class='hour'></span>
-			 	<a href="#!" onClick="registrar(this)" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-			</div>
+            <register-card ng-model="saidaAlmoco" element-id="saidaAlmoco" label="Saida almoço"></register-card>
           </li>
           <li class="collection-item">
-			<div id="saidaAlmoco">
-			 	Chegada almoço:
-			 	<span class='hour'></span>
-			 	<a href="#!" onClick="registrar(this)" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-			</div>
+				<register-card ng-model="chegadaAlmoco" element-id="chegadaAlmoco" label="Chegada almoço"></register-card>
 	      </li>
           <li class="collection-item">
-			<div id="saida">
-			 	Saida:
-			 	<span class='hour'></span>
-			 	<a href="#!" onClick="registrar(this)" class="send secondary-content"><i class="material-icons">query_builder</i></a>
-			</div>
+            <register-card ng-model="horaSaida" element-id="saida" label="Saida"></register-card>
           </li>
 	      </ul>
         </div>
@@ -62,13 +48,6 @@
 </body>
 
 <script type="text/javascript">
-
-function registrar(elem) {
-	console.log(elem);
-}
-
-
-
 //Notification.requestPermission();
 /*
 function spawnNotification(theBody,theIcon,theTitle) {
