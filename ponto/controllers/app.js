@@ -13,7 +13,7 @@ ponto.directive('registerCard', ['$log', function($log){
 	var templateHtml = 
 	`<div id="{{id}}">\n
 	 	{{label}} :\n
-	 	<span class='hour'>{{moment(hour).format('h:mm:ss')}}</span>\n
+	 	<span class='hour'>{{new Date(hour, "HH:MM:SS" )}}</span>\n
 	 	<a href="#!" ng-click="registrar()" class="send secondary-content"><i class="material-icons">query_builder</i></a>\n
 	</div>`;
 	return{
