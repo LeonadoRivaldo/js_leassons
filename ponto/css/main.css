@@ -1,0 +1,35 @@
+.default-pointer{
+	cursor: pointer;
+}
+
+
+
+
+/* ponto lista */
+.collection-item{}
+.collection-item > li{}
+
+
+/* link registro */
+.registro{ position:relative; }
+.registro:before{
+    position: absolute;
+    content: attr(tip);
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #2196F3 !important;
+    border-radius: 2px;
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    line-height: 22px;
+    height: 22px;
+    box-sizing: border-box;
+    transition: right ease 0.8s;
+    right: -250px;
+    width: 150px;
+}
+.registro.default-pointer:hover:before{
+	right: -26px;
+}
