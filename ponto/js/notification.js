@@ -4,7 +4,7 @@ var Notify = function() {
 	var arrival = function(data){
 		var corpo = "Você começou a trabalhar as " + data.toString();
 		var titulo = "DING DONG!";
-		var icone = "https://cdn0.iconfinder.com/data/icons/mtt-web-icons/139/Watch-128.png";
+		var icone = "img/ic_alarm_on_black_48dp_2x.png";
 		create( corpo, icone, titulo );
 		send();
 	}
