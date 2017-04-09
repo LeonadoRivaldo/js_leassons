@@ -32,11 +32,24 @@ function registrar(query, elem) {
 
 function load() {
 	//seta total de horas default
-	document.querySelector('#horas .time').textContent = "asdasd";
+	document.querySelector('#horas .time').textContent = " " + horasDeTrabalho;
 
 }
 
 
 function customizarHoras() {
-	console.debug( !document.querySelector('#horasCustom').checked );
+	var box = document.querySelector('.custumizarHoras');
+	var checked = !document.querySelector('#horasCustom').checked;
+	var classe = box.className;
+	var l = 'hide'.length;
+	if( checked ){
+		box.className = classe.substring(0, (box.className.length-l) );
+	}else{
+		box.className += "hide"; 
+	}
+}
+
+function alterarHoras() {
+	horasDeTrabalho = document.getElementById('working').value;
+	document.querySelector('#horas .time').textContent = " " + document.getElementById('working').value;
 }
