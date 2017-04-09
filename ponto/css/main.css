@@ -9,6 +9,7 @@
 .collection-item{}
 .collection-item > li{}
 
+.hour{ color:#0091ea;  }
 
 /* link registro */
 .registro{ position:relative; }
