@@ -44,8 +44,37 @@ var MyDate = function( date ){
 }
 
 var timer = function( horasDeTrabalho ){
-	var horas = horasDeTrabalho.split(':')[0]; 
-	var minutos = horasDeTrabalho.split(':')[0]; 
-	var segundos = 0;
+	this.aviso = new Notify();
+	this.horas = horasDeTrabalho.split(':')[0]; 
+	this.minutos = horasDeTrabalho.split(':')[1]; 
+	this.segundos = 0;
+	this.countdown = {horas,minutos,segundos};
+
+
+	var timeString = function() {
+		return tag`${countdown.horas}:${countdown.minutos}:${countdown.segundos}`;
+	};
+
+	var countdown = function(){
+		if( countdown.segundos == 0 ){
+			countdown.segundos = 60;
+			countdown.minutos--;
+		}else{
+			countdown.segundos--;
+		}
+
+
+		if( countdown.minutos = 0 ){
+			countdown.minutos = 60;
+			countdown.horas--;
+			var corpo = "Já se passaram" + horas - countdown.horas + " horas!";
+			var titulo = "DING DONG!";
+			var icone = "img/ic_alarm_on_black_48dp_2x.png";
+			aviso.create( corpo, icone, titulo );
+			aviso.send();
+		}
+
+
+	}
 
 }
