@@ -50,6 +50,9 @@ var Timer = function( horasDeTrabalho ){
 	this.horas = horasDeTrabalho.split(':')[0]; 
 	this.minutos = horasDeTrabalho.split(':')[1]; 
 	this.segundos = 0;
+
+	console.debug( this.minutos );
+
 	this.countdown = {horas,minutos,segundos};
 	var timeString = function() {
 		return tag`${countdown.horas}:${countdown.minutos}:${countdown.segundos}`;
