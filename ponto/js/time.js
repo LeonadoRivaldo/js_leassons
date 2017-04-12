@@ -80,7 +80,7 @@ var Timer = function( horasDeTrabalho ){
 			aviso.send();
 		}
 
-		if( countdown.minutos = 0 && countdown.horas = 0 ){
+		if( countdown.minutos == 0 && countdown.horas == 0 ){
 			stopTimer();
 		}
 
