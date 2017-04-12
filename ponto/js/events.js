@@ -4,7 +4,7 @@ var lunchArrivalEvent =  new Event("lunchArrival", {"bubbles":true, "cancelable"
 var lunchDepartureEvent =  new Event("lunchDeparture", {"bubbles":true, "cancelable":false});
 
 //needed vars
-var saidaEstimativa, voltaDoAlmoço;
+var saidaEstimativa, voltaDoAlmoço, timer;
 
 
 //evento de chegada
@@ -13,6 +13,9 @@ document.addEventListener('arrival', function functionName(event) {
 	saidaEstimativa.acrescenta(8, 'hour');
 	saidaEstimativa.acrescenta(48, 'minute');
 	document.querySelector('#saida .estimativa').textContent = saidaEstimativa.toString();
+	//CONTINUAR
+	//timer = new Timer(  );
+	//timer.
 });
 //evento de saida para o almoço
 document.addEventListener('lunchDeparture', function functionName(event) {

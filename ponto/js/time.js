@@ -43,19 +43,17 @@ var MyDate = function( date ){
 	}
 }
 
-var timer = function( horasDeTrabalho ){
+var Timer = function( horasDeTrabalho ){
+	this.counter;
 	this.aviso = new Notify();
 	this.horas = horasDeTrabalho.split(':')[0]; 
 	this.minutos = horasDeTrabalho.split(':')[1]; 
 	this.segundos = 0;
 	this.countdown = {horas,minutos,segundos};
-
-
 	var timeString = function() {
 		return tag`${countdown.horas}:${countdown.minutos}:${countdown.segundos}`;
 	};
-
-	var countdown = function(){
+	var countdown = function(element){
 		if( countdown.segundos == 0 ){
 			countdown.segundos = 60;
 			countdown.minutos--;
@@ -67,14 +65,36 @@ var timer = function( horasDeTrabalho ){
 		if( countdown.minutos = 0 ){
 			countdown.minutos = 60;
 			countdown.horas--;
-			var corpo = "Já se passaram" + horas - countdown.horas + " horas!";
-			var titulo = "DING DONG!";
-			var icone = "img/ic_alarm_on_black_48dp_2x.png";
+			let corpo = "Já se passaram" + horas - countdown.horas + " horas!";
+			let titulo = "DING DONG!";
+			let icone = "img/ic_alarm_on_black_48dp_2x.png";
 			aviso.create( corpo, icone, titulo );
 			aviso.send();
 		}
 
+		if( countdown.horas = 0 ){
+			let corpo = "faltam" + countdown.minutos + "minutos para você ir embora!!";
+			let titulo = "DING DONG!";
+			let icone = "img/ic_alarm_on_black_48dp_2x.png";
+			aviso.create( corpo, icone, titulo );
+			aviso.send();
+		}
+		element.textContent = timeString();
+	}
 
+	var startTimer = function(element ,interval){
+		counter = setInterval(function(){
+			countdown( element );
+		}, interval);
+	}
+
+	var stopTimer = function(){
+		clearInterval( counter );
+	}
+
+	return{
+		start: startTimer,
+		stop: stopTimer
 	}
 
 }
