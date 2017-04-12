@@ -12,7 +12,7 @@ function registrar(query, elem) {
 	if( query.split(" ")[0] == "#chegada" ){
 		chegada = data;
 		aviso.chegada(data);
-		arrivalEvent.data = data;
+		arrivalEvent.data = data.data;
 		document.dispatchEvent(arrivalEvent);
 	}	
 	if( query.split(" ")[0] == "#saidaAlmoco" ){
