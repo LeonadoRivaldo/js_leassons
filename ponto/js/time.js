@@ -79,6 +79,11 @@ var Timer = function( horasDeTrabalho ){
 			aviso.create( corpo, icone, titulo );
 			aviso.send();
 		}
+
+		if( countdown.minutos = 0 && countdown.horas = 0 ){
+			stopTimer();
+		}
+
 		element.textContent = timeString();
 	}
 

@@ -14,8 +14,8 @@ document.addEventListener('arrival', function functionName(event) {
 	saidaEstimativa.acrescenta(48, 'minute');
 	document.querySelector('#saida .estimativa').textContent = saidaEstimativa.toString();
 	//CONTINUAR
-	//timer = new Timer(  );
-	//timer.
+	timer = new Timer( event.ht );
+	timer.start( document.querySelector('#countdown .time'), 100 );
 });
 //evento de saida para o almoço
 document.addEventListener('lunchDeparture', function functionName(event) {
