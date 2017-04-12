@@ -88,6 +88,7 @@ var Timer = function( horasDeTrabalho ){
 	}
 
 	var startTimer = function(element ,interval){
+		console.info( timeString() );
 		counter = setInterval(function(){
 			countdown( element );
 		}, interval);
