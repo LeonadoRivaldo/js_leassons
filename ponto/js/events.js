@@ -11,7 +11,7 @@ var saidaEstimativa, voltaDoAlmoço;
 document.addEventListener('arrival', function functionName(event) {
 	saidaEstimativa = event.data;
 	saidaEstimativa.acrescenta(8, 'hour');
-	saidaEstimativa.acrescenta(48, 'minutes');
+	saidaEstimativa.acrescenta(48, 'minute');
 	document.querySelector('#saida .estimativa').textContent = saidaEstimativa.toString();
 });
 //evento de saida para o almoço
