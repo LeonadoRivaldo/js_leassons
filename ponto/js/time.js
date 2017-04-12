@@ -44,6 +44,7 @@ var MyDate = function( date ){
 }
 
 var Timer = function( horasDeTrabalho ){
+	console.debug( horasDeTrabalho );
 	this.counter;
 	this.aviso = new Notify();
 	this.horas = horasDeTrabalho.split(':')[0]; 
@@ -97,6 +98,8 @@ var Timer = function( horasDeTrabalho ){
 	var stopTimer = function(){
 		clearInterval( counter );
 	}
+
+	console.debug( this );
 
 	return{
 		start: startTimer,
