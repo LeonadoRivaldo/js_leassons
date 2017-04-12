@@ -32,7 +32,7 @@ var MyDate = function( date ){
 			    case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
 			    default       :  ret = undefined;  break;
 			  }
-			  return ret;
+			  date = ret;
 	};
 
 
