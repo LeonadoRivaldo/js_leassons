@@ -9,7 +9,7 @@ var saidaEstimativa, voltaDoAlmoço;
 
 //evento de chegada
 document.addEventListener('arrival', function functionName(event) {
-	saidaEstimativa = event.data;
+	saidaEstimativa = new MyDate( event.data.data );
 	saidaEstimativa.acrescenta(8, 'hour');
 	saidaEstimativa.acrescenta(48, 'minute');
 	document.querySelector('#saida .estimativa').textContent = saidaEstimativa.toString();
