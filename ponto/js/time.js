@@ -18,7 +18,7 @@ var MyDate = function( date ){
 		return tag`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 	};
 
-	var addDate = function(interval, units) {
+	var addDate = function(units, interval) {
 			  var ret = new Date(date); //don't change original date
 			  var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
 			  switch(interval.toLowerCase()) {
