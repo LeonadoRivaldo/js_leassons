@@ -43,70 +43,48 @@ var MyDate = function( date ){
 	}
 }
 
-var Timer = function( horasDeTrabalho ){
-	console.debug( horasDeTrabalho );
-	this.counter;
-	this.aviso = new Notify();
-	this.horas = horasDeTrabalho.split(':')[0]; 
-	this.minutos = horasDeTrabalho.split(':')[1]; 
-	this.segundos = 0;
+var Timer = function(horasDeTrabalho){
+	var aviso = new Notify();
+	var horas = parseInt( horasDeTrabalho.split(':')[0] ); 
+	var minutos = parseInt( horasDeTrabalho.split(':')[1] ); 
+	var segundos = 60;
 
-	console.debug( this.minutos );
-
-	this.countdown = {horas,minutos,segundos};
-	var timeString = function() {
-		return tag`${countdown.horas}:${countdown.minutos}:${countdown.segundos}`;
-	};
-	var countdown = function(element){
-		if( countdown.segundos == 0 ){
-			countdown.segundos = 60;
-			countdown.minutos--;
+	var tempo = {horas,minutos,segundos};
+	console.log( tempo );
+	var string = function() {
+		return tag`${tempo.horas}:${tempo.minutos}:${tempo.segundos}`;
+	}
+	
+	this.contador = function(){
+		//segundos
+		if( tempo.segundos == 0 ){
+			tempo.segundos = 60;
+			tempo.minutos--;
 		}else{
-			countdown.segundos--;
+			tempo.segundos--;
 		}
-
-
-		if( countdown.minutos = 0 ){
-			countdown.minutos = 60;
-			countdown.horas--;
-			let corpo = "Já se passaram" + horas - countdown.horas + " horas!";
+		//minutos
+		if( tempo.minutos == 0 ){
+			tempo.minutos = 60;
+			tempo.horas--;
+			let corpo = "Já se passaram" + horas - tempo.horas + " horas!";
 			let titulo = "DING DONG!";
 			let icone = "img/ic_alarm_on_black_48dp_2x.png";
 			aviso.create( corpo, icone, titulo );
 			aviso.send();
 		}
-
-		if( countdown.horas = 0 ){
-			let corpo = "faltam" + countdown.minutos + "minutos para você ir embora!!";
+		//horas
+		if( tempo.horas == 0 ){
+			let corpo = "faltam" + tempo.minutos + "minutos para você ir embora!!";
 			let titulo = "DING DONG!";
 			let icone = "img/ic_alarm_on_black_48dp_2x.png";
 			aviso.create( corpo, icone, titulo );
 			aviso.send();
 		}
+		return string();
+	};
 
-		if( countdown.minutos == 0 && countdown.horas == 0 ){
-			stopTimer();
-		}
 
-		element.textContent = timeString();
-	}
 
-	var startTimer = function(element ,interval){
-		console.info( timeString() );
-		counter = setInterval(function(){
-			countdown( element );
-		}, interval);
-	}
-
-	var stopTimer = function(){
-		clearInterval( counter );
-	}
-
-	console.debug( this );
-
-	return{
-		start: startTimer,
-		stop: stopTimer
-	}
-
+	return this;
 }
