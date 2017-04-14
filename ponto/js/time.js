@@ -66,7 +66,7 @@ var Timer = function(horasDeTrabalho){
 		if( tempo.minutos == 0 ){
 			tempo.minutos = 60;
 			tempo.horas--;
-			let corpo = "Já se passaram" + horas - tempo.horas + " horas!";
+			let corpo = "Já se passaram " + (horas - tempo.horas) + " horas!";
 			let titulo = "DING DONG!";
 			let icone = "img/ic_alarm_on_black_48dp_2x.png";
 			aviso.criar( corpo, icone, titulo );
