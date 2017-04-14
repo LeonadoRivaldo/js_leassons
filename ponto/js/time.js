@@ -50,7 +50,6 @@ var Timer = function(horasDeTrabalho){
 	var segundos = 60;
 
 	var tempo = {horas,minutos,segundos};
-	console.log( tempo );
 	var string = function() {
 		return tag`${tempo.horas}:${tempo.minutos}:${tempo.segundos}`;
 	}
@@ -70,16 +69,16 @@ var Timer = function(horasDeTrabalho){
 			let corpo = "Já se passaram" + horas - tempo.horas + " horas!";
 			let titulo = "DING DONG!";
 			let icone = "img/ic_alarm_on_black_48dp_2x.png";
-			aviso.create( corpo, icone, titulo );
-			aviso.send();
+			aviso.criar( corpo, icone, titulo );
+			aviso.enviar();
 		}
 		//horas
 		if( tempo.horas == 0 ){
 			let corpo = "faltam" + tempo.minutos + "minutos para você ir embora!!";
 			let titulo = "DING DONG!";
 			let icone = "img/ic_alarm_on_black_48dp_2x.png";
-			aviso.create( corpo, icone, titulo );
-			aviso.send();
+			aviso.criar( corpo, icone, titulo );
+			aviso.enviar();
 		}
 		return string();
 	};

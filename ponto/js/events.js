@@ -30,7 +30,6 @@ document.addEventListener('arrival', function functionName(event) {
 	saidaEstimativa.acrescenta(8, 'hour');
 	saidaEstimativa.acrescenta(48, 'minute');
 	document.querySelector('#saida .estimativa').textContent = saidaEstimativa.toString();
-	//CONTINUAR
 	timer = new Timer( event.ht );
 	interval = new $interval( timer.contador, 10);
 	interval.start(function(retorno){
