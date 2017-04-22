@@ -12,18 +12,24 @@ function registrar(query, elem) {
 	if( query.split(" ")[0] == "#chegada" ){
 		chegada = data;
 		aviso.chegada(data);
-		arrivalEvent.data = data.data;
+		arrivalEvent.data = chegada.data;
 		arrivalEvent.ht = horasDeTrabalho;
 		document.dispatchEvent(arrivalEvent);
 	}	
 	if( query.split(" ")[0] == "#saidaAlmoco" ){
-		//TODO
+		saidaAlmoco = data;
+		lunchDepartureEvent.data = saidaAlmoco.data;
+		document.dispatchEvent(lunchDepartureEvent);
 	}	
 	if( query.split(" ")[0] == "#chegadaAlmoco" ){
-		//TODO
+		chegadaAlmoco = data;
+		lunchArrivalEvent.data = chegadaAlmoco.data;
+		document.dispatchEvent(lunchArrivalEvent);
+		document.querySelector("#chegadaAlmoco .estimativa").style.display = 'none';
 	}	
 	if( query.split(" ")[0] == "#saida" ){
 		//TODO
+		document.querySelector("#saida .estimativa").style.display = 'none';
 	}
 
 	var elemento = document.querySelector(query);
