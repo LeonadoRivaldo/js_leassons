@@ -1,0 +1,81 @@
+
+
+<div class="content">
+	<div class="b tint"></div>
+	<div class="b tint1"></div>
+	<div class="b tint2"></div>
+	<div class="b shade"></div>
+	<div class="b shade1"></div>
+	<div class="b shade2"></div>
+</div>
+
+
+<div id="style"></div>
+<style type="text/css">
+	*{margin:0; padding:0;}
+	.content{display:block;width:80%; margin: 50px auto;}
+	.b{ width: 100px; height:100px; display: inline-block; margin:0px 10px;  }
+</style>
+<script type="text/javascript">
+	
+/*(255 - previous value), multiply that by 1/4, 1/2, 3/4*/
+
+
+var color = "rgb(153,204,100)";
+
+
+
+
+var tints = function(color){
+	if( typeof color != 'undefined' && color != 'undefined' ){
+		var color = color.substring(color.indexOf("(") + 1, color.indexOf(")"));
+		color = color.split(',');
+		var r = parseInt(color[0]);
+		var g = parseInt(color[1]);
+		var b = parseInt(color[2]);
+		r = 255 - r;
+		g = 255 - g;
+		b = 255 - b;
+
+		var colors = {
+			tint: `rgb(${parseInt(r*0.25)},${parseInt(g*0.25)},${parseInt(b*0.25)})`,
+			tint1: `rgb(${parseInt(r*0.5)},${parseInt(g*0.5)},${parseInt(b*0.5)})`,
+			tint2: `rgb(${parseInt(r*0.75)},${parseInt(g*0.75)},${parseInt(b*0.75)})`,
+		}
+		return colors;
+	}
+}
+
+/* 1/4 | 1/2 | 3/4 */
+var shades = function(color){
+		if( typeof color != 'undefined' && color != 'undefined' ){
+		var color = color.substring(color.indexOf("(") + 1, color.indexOf(")"));
+		color = color.split(',');
+		var r = parseInt(color[0]);
+		var g = parseInt(color[1]);
+		var b = parseInt(color[2]);
+		var colors = {
+			shade: `rgb(${parseInt(r*0.25)},${parseInt(g*0.25)},${parseInt(b*0.25)})`,
+			shade1: `rgb(${parseInt(r*0.5)},${parseInt(g*0.5)},${parseInt(b*0.5)})`,
+			shade2: `rgb(${parseInt(r*0.75)},${parseInt(g*0.75)},${parseInt(b*0.75)})`,
+		}
+		return colors;
+	}
+}
+
+
+var string = function( tints, shades ){
+	string  = `.tint{background-color:${tints.tint}}\n`;
+	string += `.tint1{background-color:${tints.tint1}}\n`;
+	string += `.tint2{background-color:${tints.tint2}}\n`;
+	string += `.shade{background-color:${shades.shade}}\n`;
+	string += `.shade1{background-color:${shades.shade1}}\n`;
+	string += `.shade2{background-color:${shades.shade2}}\n`;
+	return string;
+}
+
+console.log( document.getElementsByTagName('style') );
+document.getElementsByTagName('style')[0].innerHTML += string( tints(color), shades(color) );
+
+
+</script>
