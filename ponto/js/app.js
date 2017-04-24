@@ -13,6 +13,7 @@ function registrar(query, elem) {
 		chegada = data;
 		aviso.chegada(data);
 		arrivalEvent.data = data.data;
+		arrivalEvent.ht = horasDeTrabalho;
 		document.dispatchEvent(arrivalEvent);
 	}	
 	if( query.split(" ")[0] == "#saidaAlmoco" ){
