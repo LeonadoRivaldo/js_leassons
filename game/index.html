@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Games</title>
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../bower_components/materialize/dist/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/materialize/dist/js/materialize.min.js"></script>
+
+</head>
+<body>
+  <header class="container">
+    <div class="row">
+      <div class="col s12">
+        <h1><i style="font-size:41px;" class="material-icons">pets</i> Pet battle</h1>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="col s12">
+          <h1>Pets</h1>
+        </div>
+        <div class="pet-set">
+            <div class="row content" >
+            </div>
+        </div>
+      </div>
+      <div class="col s6">
+        CONTINUAR LAYOUT E BATTLE MODE!
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<script type="text/javascript">
+    var petCardTemplate = (pet) => `
+              <div class="col s12">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="${pet.pic}">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">${pet.name}<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">${pet.name}<i class="material-icons right">close</i></span>
+                    <p>${pet.bio}</p>
+                    <div class="other-pics">
+                       <div class="carousel carousel-slider">
+                        <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/800/400/food/1"></a>
+                        <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/800/400/food/2"></a>
+                        <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/800/400/food/3"></a>
+                        <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/800/400/food/4"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+
+  document.querySelector(".pet-set .content").innerHTML += petCardTemplate({name:'Dog', pic:"dog.jpg", bio:"like to eat bones!"});
+  document.querySelector(".pet-set .content").innerHTML += petCardTemplate({name:'Cat', pic:"cat.jpg", bio:"like to scracth owner couch!"});
+
+ $('.carousel.carousel-slider').carousel({fullWidth: true});
+
+
+</script>
+
+</html>
