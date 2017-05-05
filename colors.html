@@ -1,17 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Arrow Function => in ES6</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./bower_components/materialize/dist/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/materialize/dist/js/materialize.min.js"></script>
 
+  </head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col s3">
+          <div class="row">
+          </div>  
+        </div>
+        <div class="col s9">
+          <div class="col s12" id="chips"></div>
+        </div>
+      </div>
+  </div>
+</body>	
 
-<div class="content">
-	<div class="b tint"></div>
-	<div class="b tint1"></div>
-	<div class="b tint2"></div>
-	<div class="b shade"></div>
-	<div class="b shade1"></div>
-	<div class="b shade2"></div>
-</div>
-
-
-<div id="style"></div>
-<style type="text/css">
+<style id="style" type="text/css">
 	*{margin:0; padding:0;}
 	.content{display:block;width:80%; margin: 50px auto;}
 	.b{ width: 100px; height:100px; display: inline-block; margin:0px 10px;  }
@@ -20,11 +33,18 @@
 	
 /*(255 - previous value), multiply that by 1/4, 1/2, 3/4*/
 
+var tpl = function(color, classe){ 
+	return `<div class="col s12 m3">
+        <div class="card-panel ${classe}">
+          <span class="white-text">${color}
+          </span>
+        </div>
+      </div>`;
+    }
+
+
 
 var color = "rgb(153,204,100)";
-
-
-
 
 var tints = function(color){
 	if( typeof color != 'undefined' && color != 'undefined' ){
@@ -74,8 +94,23 @@ var string = function( tints, shades ){
 	return string;
 }
 
-console.log( document.getElementsByTagName('style') );
 document.getElementsByTagName('style')[0].innerHTML += string( tints(color), shades(color) );
+
+var cor = tints(color);
+cor.shade = shades(color).shade;
+cor.shade1 = shades(color).shade1;
+cor.shade2 = shades(color).shade2;
+
+
+var classes = Object.keys( tints(color) );
+classes.push(...Object.keys( shades(color) ));
+
+var container = document.querySelector("#chips");
+
+classes.forEach( function(classe, index){
+	var html = tpl(cor[classe], classe);
+	container.innerHTML += html;
+});
 
 
 </script>
