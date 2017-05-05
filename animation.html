@@ -1,0 +1,134 @@
+<div class="position">
+	<div class="ball"></div>
+	<span id="position"></span>
+</div>
+<div class="position">
+	<div class="ball2"></div>
+</div>
+
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+
+	.position{
+		width:80%;
+		height:100%;
+		position:relative;
+		z-index: 999;
+		top:0;
+		left:0;
+		margin:auto
+	}
+	.ball2,
+	.ball{
+		width:50px;
+		height:50px;
+		position: absolute;
+		transition: all ease 1s;
+		background:#333;
+		border-radius:100%;
+		top:0;
+		left:0;
+		z-index:1;
+	}
+
+	.ball2{
+		animation-duration:10s;
+		animation-name:moving;
+	}
+	
+	@keyframes moving{
+		0%{top:0; left:0;}
+		10%{top:25%; left:20%;}
+		20%{top:0%; left:40%;}
+		30%{top:25%; left:60%;}
+		40%{top:0%; left:80%;}
+		50%{top:25%; left:100%;}
+		60%{top:0%; left:80%;}
+		70%{top:25%; left:60%;}
+		80%{top:0%; left:40%;}
+		90%{top:25%; left:20%;}
+		100%{top:0%; left:0%;}
+	}
+
+
+	.ballfixed{
+		width:50px;
+		height:50px;
+		position: absolute;
+		transition: all ease 1s;
+		background:red;
+		border-radius:100%;
+		top:0;
+		left:0;
+	}
+</style>
+
+<script type="text/javascript">
+	var addStyle = function(element,css) {
+		for( prop in css ){
+			element.style[prop] = css[prop];
+		}
+	}
+	var promise = new Promise(function(resolve, reject ){
+		return resolve({
+			element:document.querySelector(".ball"),
+			delay: 2000,
+			left:10,
+			top:25,
+			start: true
+		});
+	});
+	
+	var nElement = function(x, css){
+	var newElement = "<div class='ballfixed ballfixed_"+x+"' style='top:"+css.top+";left:"+css.left+";'></div>";
+		if( x<=10 ){
+			document.querySelector("#position").innerHTML += newElement; 
+		}else{
+			var e = document.querySelector(".ballfixed_"+(21-x));
+			if( e!=null ){
+				e.parentNode.removeChild(e);
+			}
+		}
+	}
+
+
+for( let x = 0; x<21; x++ ){
+		promise = promise.then(function functionName(result) {
+			var left = result.left + '%';
+			var top = result.top + '%';	
+			setTimeout(function() {
+				addStyle( result.element, { left ,top } );
+				nElement(x, { left ,top });
+			}, result.delay);
+
+			if( result.left <= 100 && result.start ){
+				if( result.left < 100 ){
+					result.left += 10;
+					result.top = result.top != 0 ? 0 : 25;
+					
+				}else{
+					result.start = false;
+				}
+			}else if( result.left >= 0 && !result.start  ) {
+				if( result.left > 0 ){
+					result.left -= 10;
+					result.top = result.top != 0 ? 0 : 25;
+				}else{
+					result.start = true;
+				}
+			}
+
+			return Promise.resolve({
+				element:document.querySelector(".ball"),
+				delay: result.delay + 1000,
+				left: result.left,
+				top: result.top,
+				start: result.start
+			});
+		});
+}
+
+</script>
