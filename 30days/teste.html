@@ -1,0 +1,63 @@
+<<!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+        <!-- <script src="main.js"></script> -->
+    </head>
+
+    <body>
+        <script>
+            var _log = function(u) {
+                return function(a) {
+                    console.log(u + " => " + a);
+                }
+            }
+
+            var atualizadoOnly = false;
+            var cvalue = "asdasdasd";
+
+
+            _log("atualizadoOnly === false")(atualizadoOnly === false);
+            _log('cvalue === "Desvinculado"')(cvalue === "Desvinculado");
+            _log('!(atualizadoOnly === false && cvalue === "Desvinculado")')(!(atualizadoOnly === false && cvalue === "Desvinculado"));
+            if (!(atualizadoOnly === false && cvalue === "Desvinculado")) {
+                _log("atualizadoOnly")(atualizadoOnly);
+                _log("cvalue")(cvalue);
+            }
+            _log("================================")("=========================");
+            atualizadoOnly = true;
+            _log("atualizadoOnly === false")(atualizadoOnly === false);
+            _log('cvalue === "Desvinculado"')(cvalue === "Desvinculado");
+            _log('!(atualizadoOnly === false && cvalue === "Desvinculado")')(!(atualizadoOnly === false && cvalue === "Desvinculado"));
+            if (!(atualizadoOnly === false && cvalue === "Desvinculado")) {
+                _log("atualizadoOnly")(atualizadoOnly);
+                _log("cvalue")(cvalue);
+            }
+            _log("================================")("=========================");
+            atualizadoOnly = false;
+            cvalue = "Desvinculado"
+            _log("atualizadoOnly === false")(atualizadoOnly === false);
+            _log('cvalue === "Desvinculado"')(cvalue === "Desvinculado");
+            _log('!(atualizadoOnly === false && cvalue === "Desvinculado")')(!(atualizadoOnly === false && cvalue === "Desvinculado"));
+            if (!(atualizadoOnly === false && cvalue === "Desvinculado")) {
+                _log("atualizadoOnly")(atualizadoOnly);
+                _log("cvalue")(cvalue);
+            }
+            _log("================================")("=========================");
+            atualizadoOnly = true;
+            _log("atualizadoOnly === false")(atualizadoOnly === false);
+            _log('cvalue === "Desvinculado"')(cvalue === "Desvinculado");
+            _log('!(atualizadoOnly === false && cvalue === "Desvinculado")')(!(atualizadoOnly === false && cvalue === "Desvinculado"));
+            if (!(atualizadoOnly === false && cvalue === "Desvinculado")) {
+                _log("atualizadoOnly")(atualizadoOnly);
+                _log("cvalue")(cvalue);
+            }
+        </script>
+    </body>
+
+    </html>
